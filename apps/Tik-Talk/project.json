@@ -18,7 +18,13 @@
         "assets": [
           {
             "glob": "**/*",
-            "input": "apps/Tik-Talk/public"
+            "input": "apps/public/assets",
+            "output": "assets"
+          },
+          {
+            "glob": "favicon.ico",
+            "input": "apps/public",
+            "output": "/"
           }
         ],
         "styles": ["apps/Tik-Talk/src/styles.scss"]

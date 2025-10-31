@@ -1,12 +1,13 @@
-import { Component, inject, signal } from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, signal} from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import {switchMap } from 'rxjs';
 import { toObservable } from '@angular/core/rxjs-interop';
 import { AsyncPipe,} from '@angular/common';
-import {ProfileHeaderComponent, ProfileService} from '@tt/profile';
-import {SvgIconComnonent} from '@tt/common-ui';
-import {PostFeedComponent} from "@tt/posts";
+import {SvgIconComponent} from 'libs/common-ui/src/lib/components/svg-icon/svg-icon.components.ts/svg-icon.component';
+import {PostFeedComponent} from "libs/posts/src/lib/feature-posts-wall/post-feed/post-feed.component";
 import {ImgUrlPipe} from "../../../../../common-ui/src/lib/pipes";
+import {ProfileHeaderComponent} from "@tt/profile";
+import {ProfileService} from "@tt/data-access";
 
 
 @Component({
@@ -15,13 +16,14 @@ import {ImgUrlPipe} from "../../../../../common-ui/src/lib/pipes";
     ProfileHeaderComponent,
     AsyncPipe,
     RouterLink,
-    SvgIconComnonent,
+    SvgIconComponent,
     ImgUrlPipe,
     PostFeedComponent,
   ],
   templateUrl: './profile-page.component.html',
   styleUrl: './profile-page.component.scss',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProfilePageComponent {
   profileService = inject(ProfileService);

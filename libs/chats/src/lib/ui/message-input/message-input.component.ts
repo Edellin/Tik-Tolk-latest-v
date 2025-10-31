@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   EventEmitter,
   inject,
@@ -7,18 +8,22 @@ import {
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIf } from '@angular/common';
-import {AvatarCircleComponent, SvgIconComnonent} from '@tt/common-ui';
-import {ProfileService} from "@tt/profile";
+import {AvatarCircleComponent} from "libs/common-ui/src/lib/components/avatar-circle/avatar-circle.component";
+import {ProfileService} from "@tt/data-access";
+import {SvgIconComponent} from "libs/common-ui/src/lib/components/svg-icon/svg-icon.components.ts/svg-icon.component";
+
 
 @Component({
   selector: 'app-message-input',
-  imports: [FormsModule, AvatarCircleComponent, SvgIconComnonent, NgIf],
+  imports: [FormsModule, AvatarCircleComponent, SvgIconComponent, NgIf],
   templateUrl: './message-input.component.html',
   styleUrl: './message-input.component.scss',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class MessageInputComponent {
+class MessageInputComponent {
   r2 = inject(Renderer2);
+  // @ts-ignore
   me = inject(ProfileService).me;
 
   @Output() created = new EventEmitter<string>();
@@ -39,3 +44,5 @@ export class MessageInputComponent {
     this.postText = '';
   }
 }
+
+export default MessageInputComponent

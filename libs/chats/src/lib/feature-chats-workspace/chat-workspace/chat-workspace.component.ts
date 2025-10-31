@@ -1,19 +1,20 @@
-import { Component, inject } from '@angular/core';
-import { ChatWorkspaceMessagesWrapperComponent } from './chat-workspace-messages-wrapper/chat-workspace-messages-wrapper.component';
+import {ChangeDetectionStrategy, Component, inject} from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import {filter, of, switchMap} from 'rxjs';
 import { AsyncPipe } from '@angular/common';
-import {ChatsService, ChatWorkspaceHeaderComponent} from '@tt/chats';
-import {ProfileService} from '@tt/profile';
+import {ChatWorkspaceHeaderComponent, ChatWorkspaceMessagesWrapperComponent} from "@tt/chats";
+import {ChatsService, ProfileService} from "@tt/data-access";
+
 
 @Component({
   selector: 'app-chat-workspace',
   imports: [ChatWorkspaceHeaderComponent, ChatWorkspaceMessagesWrapperComponent, AsyncPipe],
-  templateUrl: './chat-workspace.component.html',
-  styleUrl: './chat-workspace.component.scss',
+  templateUrl: '/chat-workspace.component.html',
+  styleUrl: '/chat-workspace.component.scss',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ChatWorkspaceComponent {
+class ChatWorkspaceComponent {
   route = inject(ActivatedRoute);
   router = inject(Router);
   chatsService = inject(ChatsService);
@@ -38,3 +39,5 @@ export class ChatWorkspaceComponent {
     })
     );
 }
+
+export default ChatWorkspaceComponent

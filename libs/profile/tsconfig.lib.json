@@ -1,12 +1,30 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
-    "outDir": "../dist/out-tsc",
+    // 📁 Куда собирать результат
+    "outDir": "../../dist/out-tsc",
+
+    // 📘 Генерация деклараций для экспорта типов
     "declaration": true,
     "declarationMap": true,
+
+    // 🧭 Карты исходников — полезно при отладке
+    "sourceMap": true,
     "inlineSources": true,
-    "types": []
+
+    // 📦 Не подключаем лишние глобальные типы (например, Node)
+    "types": [],
+
+    // ⚙️ Повышаем стабильность компиляции
+    "stripInternal": true,
+    "noEmitOnError": true
   },
-  "exclude": ["src/**/*.spec.ts", "jest.config.ts", "src/**/*.test.ts"],
-  "include": ["src/**/*.ts"]
+  "exclude": [
+    "src/**/*.spec.ts",
+    "src/**/*.test.ts",
+    "jest.config.ts"
+  ],
+  "include": [
+    "src/**/*.ts"
+  ]
 }

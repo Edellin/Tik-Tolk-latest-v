@@ -22,11 +22,10 @@
 }
 
 body {
-  height: 100dvh;
+  height: 100vh;
   font-family: 'JetBrains Mono', sans-serif;
   background: var(--dark-color);
   color: var(--light-color);
-  background-size: cover;
   background-repeat: no-repeat;
   background-image: url('../../public/assets/imgs/background.png');
 }
@@ -73,6 +72,11 @@ body {
   cursor: pointer;
   border: 1px solid var(--dark-color);
   border-radius: 4px;
+}
+
+.svg10 {
+  width: 10px;
+  height: 10px;
 }
 
 .svg16 {
@@ -184,3 +188,5 @@ body {
   height: 84px;
   resize: none;
 }
+
+

@@ -4,6 +4,7 @@
   grid-gap: 12px;
 }
 
+
 :host.is-mine {
   grid-template-columns: min-content 32px;
   justify-self: end;
@@ -11,16 +12,41 @@
   .message-container {
     order: -1;
   }
+
+  .message-text {
+    background: var(--primary-color);
+    mask: linear-gradient(#000 0 0),
+    linear-gradient(-135deg, #000 50%, #0000 0)
+    border-box 100% 100% / 200% 200% no-repeat;
+    mask-composite: exclude;
+    mask-position: 10% 94%;
+    max-width: 80%;
+    min-width: 200px;
+  }
+}
+
+
+:host(:not(.is-mine)) {
+  justify-self: start;
+
+  .message-text {
+    background: var(--message-color);
+    mask: linear-gradient(#000 0 0),
+    linear-gradient(135deg, #000 50%, #0000 0)
+    border-box 100% 100% / 200% 200% no-repeat;
+    mask-composite: exclude;
+    mask-position: 90% 94%;
+  }
 }
 
 .message-text {
-  padding: 8px 16px;
-  background: var(--message-color);
+  padding: 10px 18px;
   font-weight: 500;
   color: var(--light-color);
-  width: min-content;
-  mask: linear-gradient(#000 0 0),
-    linear-gradient(-135deg, #000 50%, #0000 0) border-box 100% 100% / 200% 200% no-repeat;
-  mask-composite: exclude;
-  mask-position: 10% 94%;
+  width: fit-content;
+  max-width: 50%;
+  min-width: 150px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  border-radius: 10px;
 }

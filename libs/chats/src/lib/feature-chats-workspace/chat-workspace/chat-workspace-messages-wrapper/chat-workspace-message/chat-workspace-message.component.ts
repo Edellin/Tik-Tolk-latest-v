@@ -1,7 +1,9 @@
-import { Component, HostBinding, input } from '@angular/core';
-import { DatePipe } from '@angular/common';
-import {AvatarCircleComponent} from '@tt/common-ui';
-import {Message} from '../../../../date/interfaces/chats.interface';
+import {ChangeDetectionStrategy, Component, HostBinding, input} from '@angular/core';
+import {DatePipe} from "@angular/common";
+import {Message} from "@tt/data-access";
+import {AvatarCircleComponent} from "@tt/common-ui";
+
+
 
 @Component({
   selector: 'app-chat-workspace-message',
@@ -9,6 +11,7 @@ import {Message} from '../../../../date/interfaces/chats.interface';
   templateUrl: './chat-workspace-message.component.html',
   styleUrl: './chat-workspace-message.component.scss',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ChatWorkspaceMessageComponent {
   message = input.required<Message>();

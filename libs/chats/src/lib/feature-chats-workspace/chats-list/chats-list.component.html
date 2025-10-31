@@ -9,8 +9,8 @@
     />
   </label>
 </div>
-
+<div class="chats-list-scroll">
 @for (chat of chats$ | async; track chat.id) {
 <button chats [chat]="chat" [routerLink]="[chat.id]" routerLinkActive="active"></button>
-
 }
+</div>

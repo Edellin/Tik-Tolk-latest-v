@@ -93,3 +93,11 @@
     color: var(--primary-color);
   }
 }
+
+.badge {
+  background: var(--primary-color);
+  color: white;
+  border-radius: 25%;
+  padding: 2px 6px;
+  font-size: 12px;
+}

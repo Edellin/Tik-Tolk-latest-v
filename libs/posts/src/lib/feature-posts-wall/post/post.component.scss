@@ -30,6 +30,7 @@
   gap: 8px;
 }
 
+
 .comments-length {
   color: var(--primary-color);
   font-size: 12px;
@@ -44,4 +45,11 @@
   overflow-y: scroll;
   display: grid;
   grid-gap: 8px;
+}
+
+.post-comment-scroll {
+  overflow-y: scroll;
+  max-height: 150px;
+  display: grid;
+  gap: 12px;
 }

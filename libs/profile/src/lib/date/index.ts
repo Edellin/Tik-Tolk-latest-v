@@ -1,9 +1,14 @@
-
-import { ProfileService } from "./services/profile.service";
+import { SearchPageComponent } from "./search-page/search-page.component";
+import { ProfileEffects,
+  profileFeature, ProfileState, selectFilteredProfiles, selectProfileFilters, selectProfilePageable } from "./store";
 
 export {
-  ProfileService
+  SearchPageComponent,
+  ProfileEffects,
+  selectFilteredProfiles,
+  selectProfilePageable,
+  selectProfileFilters,
+  profileFeature,
 };
-
-
+export type { ProfileState };
 

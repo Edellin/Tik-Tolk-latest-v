@@ -1,5 +1,13 @@
-import type { Post, PostComment } from "./interfaces/post.interface";
-import { PostService } from "./services/post.service";
+import { postActions } from "./store/action";
+import { PostEffects } from "./store/effects";
+import {postFeature, PostState } from "./store/reducer";
+import { selectAllPosts, selectCommentsByPostId } from "./store/selectors";
 
-export type { Post, PostComment };
-export { PostService };
+export {
+  postActions,
+  PostEffects,
+  postFeature,
+  selectAllPosts,
+  selectCommentsByPostId
+};
+export type { PostState };

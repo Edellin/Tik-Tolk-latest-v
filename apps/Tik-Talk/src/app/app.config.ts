@@ -3,7 +3,10 @@ import { provideRouter } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 import { routes } from './app.routes';
 import { provideHttpClient, withInterceptors } from '@angular/common/http';
-import {authTokenInterceptor} from '@tt/auth';
+import { authTokenInterceptor } from 'libs/auth/src/lib/auth/auth.interceptor';
+import {provideStore} from "@ngrx/store";
+import {provideEffects} from "@ngrx/effects";
+
 
 
 
@@ -12,6 +15,8 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideHttpClient(withInterceptors([authTokenInterceptor])),
-    CookieService,
+    provideStore(),
+    provideEffects(),
+    CookieService
   ],
 };

@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import {ChangeDetectionStrategy, Component, signal} from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import {DndDirective} from "../../../../../common-ui/src/lib/directives/dnd.directive";
 
@@ -8,6 +8,7 @@ import {DndDirective} from "../../../../../common-ui/src/lib/directives/dnd.dire
   templateUrl: './avatar-upload.component.html',
   styleUrl: './avatar-upload.component.scss',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AvatarUploadComponent {
   preview = signal<string>('/assets/imgs/avatar-placeholder.png');

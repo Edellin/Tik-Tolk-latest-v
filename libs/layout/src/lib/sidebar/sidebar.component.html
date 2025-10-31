@@ -1,23 +1,32 @@
-<img Src="/assets/svg/Logo-Tik-Talk.svg" alt="" class="ml16 mb20" height="74" width="61" />
+<img src="/assets/svg/Logo-Tik-Talk.svg" alt="" class="ml16 mb20" height="74" width="61" />
 
 <nav class="mb20">
   <ul class="main-menu-list">
-    <li *ngFor="let menuItem of menuItems">
-      <a class="menu-item" [routerLink]="[menuItem.link]" routerLinkActive="active">
-        <svg [icon]="menuItem.icon" class="icon"></svg>
-        <span>{{ menuItem.label }}</span>
-      </a>
-    </li>
+    @for (menuItem of menuItems; track menuItem.label) {
+      <li>
+        <a
+          class="menu-item"
+          [routerLink]="menuItem.link"
+          routerLinkActive="active"
+        >
+          <svg [icon]="menuItem.icon" class="icon"></svg>
+          <span>{{ menuItem.label }}</span>
+
+          @if(menuItem.label === 'Чаты' &&  unreadMessages() > 0) {
+            <span class="badge">{{  unreadMessages() }}</span>
+          }
+        </a>
+      </li>
+    }
   </ul>
 </nav>
 
 <p class="medium-text mb32">Подписчики</p>
 
 @for (profile of subscribers$ | async; track profile.id) {
-
-<app-subscriber-card [profile]="profile"></app-subscriber-card>
-
+  <app-subscriber-card [profile]="profile"></app-subscriber-card>
 }
+
 <div class="mt20 to-subscribers">
   <a [routerLink]="['/subscribers']" class="to-subscribers-link medium-text">Все подписчики</a>
   <svg icon="Arrow" class="to-subscribers-icon"></svg>

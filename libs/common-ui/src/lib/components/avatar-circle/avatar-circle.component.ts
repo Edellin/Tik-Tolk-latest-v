@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import {ChangeDetectionStrategy, Component, input} from '@angular/core';
 import {ImgUrlPipe} from "../../pipes";
 
 
@@ -8,6 +8,7 @@ import {ImgUrlPipe} from "../../pipes";
   templateUrl: './avatar-circle.component.html',
   styleUrl: './avatar-circle.component.scss',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AvatarCircleComponent {
   avatarUrl = input<string | null>();

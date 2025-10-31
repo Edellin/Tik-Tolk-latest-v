@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   EventEmitter,
   HostBinding,
@@ -9,21 +10,21 @@ import {
 } from '@angular/core';
 import { NgIf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { firstValueFrom } from 'rxjs';
-import {PostService} from '../../data';
-import {AvatarCircleComponent, SvgIconComnonent} from '@tt/common-ui';
-import {GlobalStoreService} from '@tt/shared';
+import {GlobalStoreService} from '@tt/data-access';
+import { AvatarCircleComponent, SvgIconComponent } from 'libs/common-ui/src/lib/components';
+
+
 
 @Component({
   selector: 'app-post-input',
-  imports: [AvatarCircleComponent, NgIf, SvgIconComnonent, FormsModule],
+  imports: [AvatarCircleComponent, NgIf, SvgIconComponent, FormsModule],
   templateUrl: './post-input.component.html',
   styleUrl: './post-input.component.scss',
   standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PostInputComponent {
   r2 = inject(Renderer2);
-  postService = inject(PostService);
 
   isCommentInput = input(false);
   postId = input<number>(0);
@@ -40,37 +41,16 @@ export class PostInputComponent {
 
   onTextAreaInput(event: Event) {
     const textarea = event.target as HTMLTextAreaElement;
-
     this.r2.setStyle(textarea, 'height', 'auto');
     this.r2.setStyle(textarea, 'height', textarea.scrollHeight + 'px');
   }
-
-  onCreatePost() {
-    if (!this.postText) return;
-
-    if (this.isCommentInput()) {
-      firstValueFrom(
-        this.postService.createComment({
-          text: this.postText,
-          authorId: this.profile()!.id,
-          postId: this.postId(),
-        })
-      ).then(() => {
-        this.postText = '';
-        this.created.emit();
-      });
-
-      return;
+  onSend() {
+    if (this.postText.trim()) {
+      this.created.emit(this.postText);
+      this.postText = ''
     }
-
-    firstValueFrom(
-      this.postService.createPost({
-        title: 'Клевый пост',
-        content: this.postText,
-        authorId: this.profile()!.id,
-      })
-    ).then(() => {
-      this.postText = '';
-    });
+  }
+  onKeyUp() {
+      this.onSend();
   }
 }
